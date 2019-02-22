@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="DataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="DataModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DataModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UsuarioSet" EntityType="DataModel.Usuario" />
+          <EntitySet Name="ReservaSet" EntityType="DataModel.Reserva" />
+          <EntitySet Name="DocumentoSet" EntityType="DataModel.Documento" />
+          <EntitySet Name="EjemplarSet" EntityType="DataModel.Ejemplar" />
+          <EntitySet Name="CategoriaSet" EntityType="DataModel.Categoria" />
+          <EntitySet Name="DetalleSet" EntityType="DataModel.Detalle" />
+          <EntitySet Name="PrestamoSet" EntityType="DataModel.Prestamo" />
+          <EntitySet Name="MultaSet" EntityType="DataModel.Multa" />
+          <EntitySet Name="AutorSet" EntityType="DataModel.Autor" />
+          <EntitySet Name="AutoriaSet" EntityType="DataModel.Autoria" />
+        </EntityContainer>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Plan" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Property Name="Fecha" Type="String" Nullable="false" />
+          <Property Name="Posicion" Type="String" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Documento">
+          <Key>
+            <PropertyRef Name="Index" />
+          </Key>
+          <Property Name="Index" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Posicion" Type="String" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ejemplar">
+          <Key>
+            <PropertyRef Name="CodBarras" />
+          </Key>
+          <Property Name="CodBarras" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Nombre" Type="Int32" Nullable="false" />
+          <Property Name="DiasPrestamo" Type="String" Nullable="false" />
+          <Property Name="MultaDia" Type="Decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detalle">
+          <Property Name="FechaDev" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prestamo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Multa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="Decimal" Nullable="false" />
+          <Property Name="FechaCanc" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Autoria">
+          <Property Name="Rol" Type="String" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="DataModel" />
+        <Alias Key="Target" Value="DataModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="DataModelContainer" StorageEntityContainer="DataModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

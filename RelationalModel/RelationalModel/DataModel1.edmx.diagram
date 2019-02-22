@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="95b52a61939b4146b8a583196d6d5dd4" Name="Diagram1" DisplayType="true" ZoomLevel="98" >
+        <EntityTypeShape EntityType="DataModel.Usuario" Width="1.5" PointX="0.5" PointY="0.875" />
+        <EntityTypeShape EntityType="DataModel.Reserva" Width="1.5" PointX="2.5" PointY="0.875" />
+        <EntityTypeShape EntityType="DataModel.Documento" Width="1.5" PointX="4.5" PointY="0.875" />
+        <EntityTypeShape EntityType="DataModel.Ejemplar" Width="1.5" PointX="6.375" PointY="0.875" />
+        <EntityTypeShape EntityType="DataModel.Categoria" Width="1.875" PointX="8.25" PointY="0.875" />
+        <EntityTypeShape EntityType="DataModel.Detalle" Width="1.5" PointX="0.5" PointY="3.125" />
+        <EntityTypeShape EntityType="DataModel.Prestamo" Width="1.5" PointX="2.5" PointY="3.125" />
+        <EntityTypeShape EntityType="DataModel.Multa" Width="1.5" PointX="4.5" PointY="3.125" />
+        <EntityTypeShape EntityType="DataModel.Autor" Width="1.5" PointX="6.375" PointY="3.125" />
+        <EntityTypeShape EntityType="DataModel.Autoria" Width="1.5" PointX="8.25" PointY="3.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
