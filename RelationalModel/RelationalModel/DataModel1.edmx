@@ -12,39 +12,95 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
-        <EntityContainer Name="DataModelContainer" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="UsuarioSet" EntityType="DataModel.Usuario" />
-          <EntitySet Name="ReservaSet" EntityType="DataModel.Reserva" />
-          <EntitySet Name="DocumentoSet" EntityType="DataModel.Documento" />
-          <EntitySet Name="EjemplarSet" EntityType="DataModel.Ejemplar" />
-          <EntitySet Name="CategoriaSet" EntityType="DataModel.Categoria" />
-          <EntitySet Name="DetalleSet" EntityType="DataModel.Detalle" />
-          <EntitySet Name="PrestamoSet" EntityType="DataModel.Prestamo" />
-          <EntitySet Name="MultaSet" EntityType="DataModel.Multa" />
-          <EntitySet Name="AutorSet" EntityType="DataModel.Autor" />
-          <EntitySet Name="AutoriaSet" EntityType="DataModel.Autoria" />
+        <EntityContainer Name="Contexto" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Usuarios" EntityType="DataModel.Usuario" />
+          <EntitySet Name="Reservas" EntityType="DataModel.Reserva" />
+          <EntitySet Name="Documentos" EntityType="DataModel.Documento" />
+          <EntitySet Name="Ejemplares" EntityType="DataModel.Ejemplar" />
+          <EntitySet Name="Categorias" EntityType="DataModel.Categoria" />
+          <EntitySet Name="Detalles" EntityType="DataModel.Detalle" />
+          <EntitySet Name="Prestamos" EntityType="DataModel.Prestamo" />
+          <EntitySet Name="Multas" EntityType="DataModel.Multa" />
+          <EntitySet Name="Autores" EntityType="DataModel.Autor" />
+          <EntitySet Name="Autorias" EntityType="DataModel.Autoria" />
+          <AssociationSet Name="UsuarioReserva" Association="DataModel.UsuarioReserva">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Reserva" EntitySet="Reservas" />
+          </AssociationSet>
+          <AssociationSet Name="PrestamoDetalle" Association="DataModel.PrestamoDetalle">
+            <End Role="Prestamo" EntitySet="Prestamos" />
+            <End Role="Detalle" EntitySet="Detalles" />
+          </AssociationSet>
+          <AssociationSet Name="MultaDetalle" Association="DataModel.MultaDetalle">
+            <End Role="Multa" EntitySet="Multas" />
+            <End Role="Detalle" EntitySet="Detalles" />
+          </AssociationSet>
+          <AssociationSet Name="DocumentoEjemplar" Association="DataModel.DocumentoEjemplar">
+            <End Role="Documento" EntitySet="Documentos" />
+            <End Role="Ejemplar" EntitySet="Ejemplares" />
+          </AssociationSet>
+          <AssociationSet Name="DocumentoAutoria" Association="DataModel.DocumentoAutoria">
+            <End Role="Documento" EntitySet="Documentos" />
+            <End Role="Autoria" EntitySet="Autorias" />
+          </AssociationSet>
+          <AssociationSet Name="DocumentoReserva" Association="DataModel.DocumentoReserva">
+            <End Role="Documento" EntitySet="Documentos" />
+            <End Role="Reserva" EntitySet="Reservas" />
+          </AssociationSet>
+          <AssociationSet Name="AutorAutoria" Association="DataModel.AutorAutoria">
+            <End Role="Autor" EntitySet="Autores" />
+            <End Role="Autoria" EntitySet="Autorias" />
+          </AssociationSet>
+          <AssociationSet Name="EjemplarDetalle" Association="DataModel.EjemplarDetalle">
+            <End Role="Ejemplar" EntitySet="Ejemplares" />
+            <End Role="Detalle" EntitySet="Detalles" />
+          </AssociationSet>
+          <AssociationSet Name="DocumentoCategoria" Association="DataModel.DocumentoCategoria">
+            <End Role="Documento" EntitySet="Documentos" />
+            <End Role="Categoria" EntitySet="Categorias" />
+          </AssociationSet>
+          <AssociationSet Name="UsuarioPrestamo" Association="DataModel.UsuarioPrestamo">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Prestamo" EntitySet="Prestamos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" />
-          <Property Name="Plan" Type="String" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="40" />
+          <Property Name="Plan" Type="String" Nullable="false" MaxLength="40" />
           <Property Name="Email" Type="String" Nullable="false" />
+          <NavigationProperty Name="Reservas" Relationship="DataModel.UsuarioReserva" FromRole="Usuario" ToRole="Reserva" />
+          <NavigationProperty Name="Prestamos" Relationship="DataModel.UsuarioPrestamo" FromRole="Usuario" ToRole="Prestamo" />
         </EntityType>
         <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="UsuarioId" />
+            <PropertyRef Name="DocumentoIndex" />
+          </Key>
           <Property Name="Fecha" Type="String" Nullable="false" />
           <Property Name="Posicion" Type="String" Nullable="false" />
-          <Property Name="Estado" Type="String" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" DefaultValue="Activa" />
+          <NavigationProperty Name="Usuario" Relationship="DataModel.UsuarioReserva" FromRole="Reserva" ToRole="Usuario" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Documento" Relationship="DataModel.DocumentoReserva" FromRole="Reserva" ToRole="Documento" />
+          <Property Name="DocumentoIndex" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Documento">
           <Key>
             <PropertyRef Name="Index" />
           </Key>
           <Property Name="Index" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
-          <Property Name="Posicion" Type="String" Nullable="false" />
-          <Property Name="Estado" Type="String" Nullable="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="40" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="40" />
+          <NavigationProperty Name="Ejemplares" Relationship="DataModel.DocumentoEjemplar" FromRole="Documento" ToRole="Ejemplar" />
+          <NavigationProperty Name="Autorias" Relationship="DataModel.DocumentoAutoria" FromRole="Documento" ToRole="Autoria" />
+          <NavigationProperty Name="Reservas" Relationship="DataModel.DocumentoReserva" FromRole="Documento" ToRole="Reserva" />
+          <NavigationProperty Name="Categoria" Relationship="DataModel.DocumentoCategoria" FromRole="Documento" ToRole="Categoria" />
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Ejemplar">
           <Key>
@@ -52,19 +108,32 @@
           </Key>
           <Property Name="CodBarras" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
-          <Property Name="Estado" Type="String" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" DefaultValue="Ejemplar" />
+          <NavigationProperty Name="Documento" Relationship="DataModel.DocumentoEjemplar" FromRole="Ejemplar" ToRole="Documento" />
+          <Property Name="DocumentoIndex" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Detalle" Relationship="DataModel.EjemplarDetalle" FromRole="Ejemplar" ToRole="Detalle" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
-          <Property Name="Nombre" Type="Int32" Nullable="false" />
-          <Property Name="DiasPrestamo" Type="String" Nullable="false" />
-          <Property Name="MultaDia" Type="Decimal" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="30" />
+          <Property Name="DiasPrestamo" Type="Int32" Nullable="false" />
+          <Property Name="MultaDia" Nullable="false" Type="Decimal" />
+          <NavigationProperty Name="Documentos" Relationship="DataModel.DocumentoCategoria" FromRole="Categoria" ToRole="Documento" />
         </EntityType>
         <EntityType Name="Detalle">
-          <Property Name="FechaDev" Type="DateTime" Nullable="false" />
+          <Key>
+            <PropertyRef Name="PrestamoId" />
+            <PropertyRef Name="EjemplarCodBarras" />
+          </Key>
+          <Property Name="FechaDev" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="Prestamo" Relationship="DataModel.PrestamoDetalle" FromRole="Detalle" ToRole="Prestamo" />
+          <Property Name="PrestamoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Multa" Relationship="DataModel.MultaDetalle" FromRole="Detalle" ToRole="Multa" />
+          <NavigationProperty Name="Ejemplar" Relationship="DataModel.EjemplarDetalle" FromRole="Detalle" ToRole="Ejemplar" />
+          <Property Name="EjemplarCodBarras" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Prestamo">
           <Key>
@@ -72,6 +141,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Detalles" Relationship="DataModel.PrestamoDetalle" FromRole="Prestamo" ToRole="Detalle" />
+          <NavigationProperty Name="Usuario" Relationship="DataModel.UsuarioPrestamo" FromRole="Prestamo" ToRole="Usuario" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Multa">
           <Key>
@@ -79,18 +151,154 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Valor" Type="Decimal" Nullable="false" />
-          <Property Name="FechaCanc" Type="DateTime" Nullable="false" />
+          <Property Name="FechaCanc" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="Detalles" Relationship="DataModel.MultaDetalle" FromRole="Multa" ToRole="Detalle" />
         </EntityType>
         <EntityType Name="Autor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="40" />
+          <NavigationProperty Name="Autorias" Relationship="DataModel.AutorAutoria" FromRole="Autor" ToRole="Autoria" />
         </EntityType>
         <EntityType Name="Autoria">
-          <Property Name="Rol" Type="String" Nullable="false" />
+          <Key>
+            <PropertyRef Name="DocumentoIndex" />
+            <PropertyRef Name="AutorId" />
+          </Key>
+          <Property Name="Rol" Type="String" Nullable="false" MaxLength="40" DefaultValue="Principal" />
+          <NavigationProperty Name="Documento" Relationship="DataModel.DocumentoAutoria" FromRole="Autoria" ToRole="Documento" />
+          <Property Name="DocumentoIndex" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Autor" Relationship="DataModel.AutorAutoria" FromRole="Autoria" ToRole="Autor" />
+          <Property Name="AutorId" Type="Int32" Nullable="false" />
         </EntityType>
+        <Association Name="UsuarioReserva">
+          <End Type="DataModel.Usuario" Role="Usuario" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.Reserva" Role="Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PrestamoDetalle">
+          <End Type="DataModel.Prestamo" Role="Prestamo" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.Detalle" Role="Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="PrestamoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MultaDetalle">
+          <End Type="DataModel.Multa" Role="Multa" Multiplicity="0..1" />
+          <End Type="DataModel.Detalle" Role="Detalle" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+        </Association>
+        <Association Name="DocumentoEjemplar">
+          <End Type="DataModel.Documento" Role="Documento" Multiplicity="1" />
+          <End Type="DataModel.Ejemplar" Role="Ejemplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documento">
+              <PropertyRef Name="Index" />
+            </Principal>
+            <Dependent Role="Ejemplar">
+              <PropertyRef Name="DocumentoIndex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DocumentoAutoria">
+          <End Type="DataModel.Documento" Role="Documento" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.Autoria" Role="Autoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documento">
+              <PropertyRef Name="Index" />
+            </Principal>
+            <Dependent Role="Autoria">
+              <PropertyRef Name="DocumentoIndex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DocumentoReserva">
+          <End Type="DataModel.Documento" Role="Documento" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.Reserva" Role="Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documento">
+              <PropertyRef Name="Index" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="DocumentoIndex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AutorAutoria">
+          <End Type="DataModel.Autor" Role="Autor" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.Autoria" Role="Autoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Autoria">
+              <PropertyRef Name="AutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EjemplarDetalle">
+          <End Type="DataModel.Ejemplar" Role="Ejemplar" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.Detalle" Role="Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ejemplar">
+              <PropertyRef Name="CodBarras" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="EjemplarCodBarras" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DocumentoCategoria">
+          <End Type="DataModel.Documento" Role="Documento" Multiplicity="*" />
+          <End Type="DataModel.Categoria" Role="Categoria" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Documento">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsuarioPrestamo">
+          <End Type="DataModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="DataModel.Prestamo" Role="Prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prestamo">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -98,7 +306,7 @@
       <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
         <Alias Key="Model" Value="DataModel" />
         <Alias Key="Target" Value="DataModel.Store" />
-        <EntityContainerMapping CdmEntityContainer="DataModelContainer" StorageEntityContainer="DataModelTargetContainer">
+        <EntityContainerMapping CdmEntityContainer="Contexto" StorageEntityContainer="DataModelTargetContainer">
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

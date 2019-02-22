@@ -4,17 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="95b52a61939b4146b8a583196d6d5dd4" Name="Diagram1" DisplayType="true" ZoomLevel="98" >
-        <EntityTypeShape EntityType="DataModel.Usuario" Width="1.5" PointX="0.5" PointY="0.875" />
-        <EntityTypeShape EntityType="DataModel.Reserva" Width="1.5" PointX="2.5" PointY="0.875" />
-        <EntityTypeShape EntityType="DataModel.Documento" Width="1.5" PointX="4.5" PointY="0.875" />
-        <EntityTypeShape EntityType="DataModel.Ejemplar" Width="1.5" PointX="6.375" PointY="0.875" />
-        <EntityTypeShape EntityType="DataModel.Categoria" Width="1.875" PointX="8.25" PointY="0.875" />
-        <EntityTypeShape EntityType="DataModel.Detalle" Width="1.5" PointX="0.5" PointY="3.125" />
-        <EntityTypeShape EntityType="DataModel.Prestamo" Width="1.5" PointX="2.5" PointY="3.125" />
-        <EntityTypeShape EntityType="DataModel.Multa" Width="1.5" PointX="4.5" PointY="3.125" />
-        <EntityTypeShape EntityType="DataModel.Autor" Width="1.5" PointX="6.375" PointY="3.125" />
-        <EntityTypeShape EntityType="DataModel.Autoria" Width="1.5" PointX="8.25" PointY="3.125" />
+      <Diagram DiagramId="95b52a61939b4146b8a583196d6d5dd4" Name="Diagram1" DisplayType="true" ZoomLevel="83" >
+        <EntityTypeShape EntityType="DataModel.Usuario" Width="1.5" PointX="0.875" PointY="1.625" />
+        <EntityTypeShape EntityType="DataModel.Reserva" Width="1.875" PointX="3.625" PointY="1.625" />
+        <EntityTypeShape EntityType="DataModel.Documento" Width="1.5" PointX="6.875" PointY="1.5" />
+        <EntityTypeShape EntityType="DataModel.Ejemplar" Width="1.875" PointX="6.5" PointY="4.75" />
+        <EntityTypeShape EntityType="DataModel.Categoria" Width="1.875" PointX="9.625" PointY="1.75" />
+        <EntityTypeShape EntityType="DataModel.Detalle" Width="2" PointX="3.5" PointY="4.5" />
+        <EntityTypeShape EntityType="DataModel.Prestamo" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="DataModel.Multa" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="DataModel.Autor" Width="1.5" PointX="9.875" PointY="7" />
+        <EntityTypeShape EntityType="DataModel.Autoria" Width="1.5" PointX="10" PointY="4.375" />
+        <AssociationConnector Association="DataModel.UsuarioReserva" />
+        <AssociationConnector Association="DataModel.PrestamoDetalle" />
+        <AssociationConnector Association="DataModel.MultaDetalle" />
+        <AssociationConnector Association="DataModel.DocumentoEjemplar" />
+        <AssociationConnector Association="DataModel.DocumentoAutoria" />
+        <AssociationConnector Association="DataModel.DocumentoReserva" />
+        <AssociationConnector Association="DataModel.AutorAutoria" />
+        <AssociationConnector Association="DataModel.EjemplarDetalle" />
+        <AssociationConnector Association="DataModel.DocumentoCategoria" />
+        <AssociationConnector Association="DataModel.UsuarioPrestamo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
