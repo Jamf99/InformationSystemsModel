@@ -33,7 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -45,13 +52,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autor.cs">
+      <DependentUpon>DataModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Autoria.cs">
+      <DependentUpon>DataModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Categoria.cs">
+      <DependentUpon>DataModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataModel1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Detalle.cs">
+      <DependentUpon>DataModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Documento.cs">
+      <DependentUpon>DataModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ejemplar.cs">
+      <DependentUpon>DataModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Multa.cs">
+      <DependentUpon>DataModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Prestamo.cs">
+      <DependentUpon>DataModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reserva.cs">
+      <DependentUpon>DataModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>DataModel1.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -62,6 +109,23 @@
     <None Include="DataModel1.edmx.diagram">
       <DependentUpon>DataModel1.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModel1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataModel1.Context.cs</LastGenOutput>
+      <DependentUpon>DataModel1.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataModel1.edmx.sql" />
+    <Content Include="DataModel1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataModel1.cs</LastGenOutput>
+      <DependentUpon>DataModel1.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
