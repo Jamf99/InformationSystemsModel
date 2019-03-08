@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/27/2019 17:21:56
+-- Date Created: 03/08/2019 16:37:29
 -- Generated from EDMX file: C:\Users\User\Source\Repos\Jamf99\InformationSystemsModel\RelationalModel\RelationalModel\DataModel1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [RelationalModelDataBase];
+USE [P09706_2_27];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -17,11 +17,71 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_UsuarioReserva]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Reservas] DROP CONSTRAINT [FK_UsuarioReserva];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PrestamoDetalle]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Detalles] DROP CONSTRAINT [FK_PrestamoDetalle];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MultaDetalle]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Multas] DROP CONSTRAINT [FK_MultaDetalle];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DocumentoEjemplar]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Ejemplares] DROP CONSTRAINT [FK_DocumentoEjemplar];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DocumentoAutoria]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Autorias] DROP CONSTRAINT [FK_DocumentoAutoria];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DocumentoReserva]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Reservas] DROP CONSTRAINT [FK_DocumentoReserva];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AutorAutoria]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Autorias] DROP CONSTRAINT [FK_AutorAutoria];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EjemplarDetalle]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Detalles] DROP CONSTRAINT [FK_EjemplarDetalle];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DocumentoCategoria]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Documentos] DROP CONSTRAINT [FK_DocumentoCategoria];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UsuarioPrestamo]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Prestamos] DROP CONSTRAINT [FK_UsuarioPrestamo];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Usuarios]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Usuarios];
+GO
+IF OBJECT_ID(N'[dbo].[Reservas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Reservas];
+GO
+IF OBJECT_ID(N'[dbo].[Documentos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Documentos];
+GO
+IF OBJECT_ID(N'[dbo].[Ejemplares]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Ejemplares];
+GO
+IF OBJECT_ID(N'[dbo].[Categorias]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Categorias];
+GO
+IF OBJECT_ID(N'[dbo].[Detalles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Detalles];
+GO
+IF OBJECT_ID(N'[dbo].[Prestamos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Prestamos];
+GO
+IF OBJECT_ID(N'[dbo].[Multas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Multas];
+GO
+IF OBJECT_ID(N'[dbo].[Autores]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Autores];
+GO
+IF OBJECT_ID(N'[dbo].[Autorias]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Autorias];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
