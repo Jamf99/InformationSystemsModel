@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/08/2019 16:37:29
+-- Date Created: 03/13/2019 17:47:15
 -- Generated from EDMX file: C:\Users\User\Source\Repos\Jamf99\InformationSystemsModel\RelationalModel\RelationalModel\DataModel1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [P09706_2_27];
+USE [Datos];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -98,8 +98,8 @@ GO
 
 -- Creating table 'Reservas'
 CREATE TABLE [dbo].[Reservas] (
-    [Fecha] nvarchar(max)  NOT NULL,
-    [Posicion] nvarchar(max)  NOT NULL,
+    [Fecha] datetime  NOT NULL,
+    [Posicion] int  NOT NULL,
     [Estado] nvarchar(max)  NOT NULL,
     [UsuarioId] int  NOT NULL,
     [DocumentoIndex] int  NOT NULL

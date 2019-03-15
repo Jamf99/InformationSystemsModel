@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e23f88caa707466a91168487c5f1949c" Name="Diagram1" ZoomLevel="72" DisplayType="true" >
+        <EntityTypeShape EntityType="Modelo.Usuario" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="Modelo.Reserva" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="Modelo.Documento" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="Modelo.Ejemplar" Width="1.5" PointX="3" PointY="7.375" />
+        <EntityTypeShape EntityType="Modelo.Categoria" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="Modelo.Detalle" Width="1.5" PointX="5.25" PointY="7.375" />
+        <EntityTypeShape EntityType="Modelo.Prestamo" Width="1.5" PointX="3" PointY="13.25" />
+        <EntityTypeShape EntityType="Modelo.Multa" Width="1.5" PointX="3" PointY="16" />
+        <EntityTypeShape EntityType="Modelo.Autor" Width="1.5" PointX="3.75" PointY="1" />
+        <EntityTypeShape EntityType="Modelo.Autoria" Width="1.5" PointX="6" PointY="3.75" />
+        <AssociationConnector Association="Modelo.UsuarioReserva" />
+        <AssociationConnector Association="Modelo.UsuarioPrestamo" />
+        <AssociationConnector Association="Modelo.DocumentoEjemplar" />
+        <AssociationConnector Association="Modelo.DocumentoAutoria" />
+        <AssociationConnector Association="Modelo.DocumentoReserva" />
+        <AssociationConnector Association="Modelo.DocumentoCategoria" />
+        <AssociationConnector Association="Modelo.PrestamoDetalle" />
+        <AssociationConnector Association="Modelo.MultaDetalle" />
+        <AssociationConnector Association="Modelo.EjemplarDetalle" />
+        <AssociationConnector Association="Modelo.AutorAutoria" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -20,8 +20,8 @@ namespace RelationalModel
             this.Estado = "Activa";
         }
     
-        public string Fecha { get; set; }
-        public string Posicion { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public int Posicion { get; set; }
         public string Estado { get; set; }
         public int UsuarioId { get; set; }
         public int DocumentoIndex { get; set; }

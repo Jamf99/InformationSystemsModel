@@ -49,13 +49,14 @@ namespace RelationalModel
             documentos.ForEach(d => ctx.Documentos.Add(d));
 
             var reservas = new List<Reserva> {
-        new Reserva { Fecha = "2016, 11, 01", Posicion = "1", Estado = "Activa", UsuarioId = 7, DocumentoIndex = 1050 },
-        new Reserva { Fecha = "2016, 12, 25", Posicion = "2", Estado = "Cancelada", UsuarioId = 1, DocumentoIndex = 4022 },
-        new Reserva { Fecha = "2016, 01, 13", Posicion = "5", Estado = "Activa", UsuarioId = 3, DocumentoIndex = 1050 },
-        new Reserva { Fecha = "2016, 06, 21", Posicion = "3", Estado = "Activa", UsuarioId = 2, DocumentoIndex = 3141 },
-        new Reserva { Fecha = "(2016, 09, 22", Posicion = "1", Estado = "Cancelada", UsuarioId = 1, DocumentoIndex = 2021 }
+       new Reserva { Fecha = new DateTime(2016, 11, 01), Posicion = 1, Estado = "Activa", UsuarioId = 7, DocumentoIndex = 1050 },
+        new Reserva { Fecha = new DateTime(2016, 12, 25), Posicion = 2, Estado = "Cancelada", UsuarioId = 1, DocumentoIndex = 4022 },
+        new Reserva { Fecha = new DateTime(2016, 01, 13), Posicion = 5, Estado = "Activa", UsuarioId = 3, DocumentoIndex = 1050 },
+        new Reserva { Fecha = new DateTime(2016, 06, 21), Posicion = 3, Estado = "Activa", UsuarioId = 2, DocumentoIndex = 3141 },
+        new Reserva { Fecha = new DateTime(2016, 09, 22), Posicion = 1, Estado = "Cancelada", UsuarioId = 1, DocumentoIndex = 2021 }
     };
             reservas.ForEach(r => ctx.Reservas.Add(r));
+
 
             var autorias = new List<Autoria> {
         new Autoria { AutorId = 1, DocumentoIndex = 1050, Rol = "Principal" },
@@ -129,7 +130,14 @@ namespace RelationalModel
         {
             using (var ctx = new Contexto())
             {
-                CargaDatos(ctx);
+                var docs = ctx.Detalles.Where(d => d.Prestamo.Fecha == new DateTime(2016, 09, 22)).Select(d => new
+                {
+                    tit = d.Ejemplar.Documento.Titulo,
+                    tipo = d.Ejemplar.Documento.Tipo
+                });
+                docs.ToList().ForEach(d => Console.WriteLine("{0} {1}", d.tit, d.tipo));
+
+
             }
         }
 

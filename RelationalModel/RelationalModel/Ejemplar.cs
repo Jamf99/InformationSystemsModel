@@ -18,7 +18,7 @@ namespace RelationalModel
         public Ejemplar()
         {
             this.Estado = "Ejemplar";
-            this.Detalle = new HashSet<Detalle>();
+            this.Detalles = new HashSet<Detalle>();
         }
     
         public int CodBarras { get; set; }
@@ -28,6 +28,6 @@ namespace RelationalModel
     
         public virtual Documento Documento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detalle> Detalle { get; set; }
+        public virtual ICollection<Detalle> Detalles { get; set; }
     }
 }
