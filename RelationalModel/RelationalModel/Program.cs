@@ -126,68 +126,83 @@ namespace RelationalModel
             ctx.SaveChanges();
         }
 
+        //Para todas las categorías nombre de la categoría y número total de multas aplicadas a ejemplares de esa categoría. 
+        public static void ejercicio1(Contexto ctx)
+        {
+            ctx.Multas.GroupBy(x => x.Detalles.Ejemplar.Documento.Categoria.Nombre).ToList().ForEach(x => Console.WriteLine(x.Key + "--" + x.Count()));
+        }
+
+        //Categoría con mayor número de multas
+        public static void ejercicio2(Contexto ctx)
+        {
+            Console.WriteLine(ctx.Multas.GroupBy(x => x.Detalles.Ejemplar.Documento.Categoria.Nombre).OrderByDescending(x => x.Count()).First().Key);
+        }
+
+        //Para todos los documentos título del documento y valor total en multas. 
+        public static void ejercicio3(Contexto ctx)
+        {
+            ctx.Multas.GroupBy(
+                x => x.Detalles.Ejemplar.Documento.Titulo).Select(
+                x => new {
+                    titulo = x.Key, multa = x.Select(y => y.Valor).Sum()
+                }).ToList().ForEach(x => Console.WriteLine(x.titulo + "--" + x.multa));
+        }
+
+        //Para todos los documentos título y número total de reservas.
+        public static void ejercicio4(Contexto ctx)
+        {
+            ctx.Documentos.ToList().ForEach(x => Console.WriteLine("Documento: " + x.Titulo + ", Número de Reservas: " + x.Reservas.Count()));
+        }
+
+        //Para todos los autores nombre y todas las reservas con fecha, estado y posición, de sus documentos. 
+        public static void ejercicio5(Contexto ctx)
+        {
+            ctx.Autores.ToList().ForEach(x => 
+            {
+                Console.WriteLine("Autor: " + x.Nombre);
+                Console.WriteLine("Reservas: ");
+                x.Autorias.ToList().ForEach(y => y.Documento.Reservas.ToList().ForEach( z => Console.WriteLine("Fecha: " + z.Fecha + "Estado: " + z.Estado + "Posición: " + z.Posicion)));
+            });
+        }
+
+        //Títulos de los documentos reservados por el usuario id 
+        public static void ejercicio6(Contexto ctx)
+        {
+            ctx.Usuarios.Where(x => x.Id == 2).First().Reservas.Select(x => x.Documento.Titulo).ToList().ForEach(x => Console.WriteLine(x));
+        }
+
+        //Autores de los documentos prestados por el usuario
+        public static void ejercicio7(Contexto ctx)
+        {
+            ctx.Detalles.Where(d => d.Prestamo.Usuario.Id == 2).SelectMany(d => d.Ejemplar.Documento.Autorias).Distinct().ToList().ForEach(r => Console.WriteLine(r.Autor.Nombre));
+        }
+
+       //Para cada usuario nombre del usuario y lista de nombres de los autores de los documentos que ha prestado.
+        public static void ejercicio8(Contexto ctx)
+        {
+            ctx.Usuarios.ToList().Where(s => s.Prestamos.Count != 0).ToList().ForEach(x =>
+            {
+                Console.WriteLine(x.Nombre);
+                Console.WriteLine("Autores Libros Prestados");
+                x.Prestamos.ToList().ForEach(y => y.Detalles.ToList().ForEach(z => z.Ejemplar.Documento.Autorias.ToList()
+                .ForEach( w => Console.WriteLine("         Autor: "+w.Autor.Nombre))));
+            });
+        }
+
         static void Main(string[] args)
         {
             using (var ctx = new Contexto())
             {
-                var docs = ctx.Detalles.Where(d => d.Prestamo.Fecha == new DateTime(2016, 09, 22)).Select(d => new
-                {
-                    tit = d.Ejemplar.Documento.Titulo,
-                    tipo = d.Ejemplar.Documento.Tipo
-                });
-                docs.ToList().ForEach(d => Console.WriteLine("{0} {1}", d.tit, d.tipo));
-
+                /*ejercicio1(ctx);
+                ejercicio2(ctx);
+                ejercicio3(ctx);
+                ejercicio4(ctx);
+                ejercicio5(ctx);
+                ejercicio6(ctx);
+                ejercicio7(ctx);*/
+               // ejercicio7(ctx);
 
             }
         }
-
-        /*static void Main(string[] args)
-        {
-            using (var ctx = new Contexto())
-            {
-                /*Usuario usu = new Usuario();
-                usu.Id = 12203001;
-                usu.Nombre = "Hugo Chávez";
-                usu.Plan = "Industrial";
-                usu.Email = "chavez@venezuela.com";
-                ctx.Usuarios.Add(usu);
-                ctx.SaveChanges();
-                */
-                /*Categoria cat = new Categoria();
-                cat.Id = 1;
-                cat.Nombre = "General";
-                cat.DiasPrestamo = 1;
-                cat.MultaDia = 2000;
-
-                Documento doc = new Documento();
-                doc.Index = 1;
-                doc.Titulo = "Sistemas de Información";
-                doc.Tipo = "Libro";
-                doc.Categoria = cat;
-                ctx.Documentos.Add(doc);
-                ctx.SaveChanges();*/
-
-                //Recorre los documentos de las categorias
-               /* foreach (var c in ctx.Categorias) {
-                    foreach (var d in c.Documentos) {
-                        Console.WriteLine("{0} {1}", d.Index, d.Titulo);
-                    }
-                }*/
-
-                //actualizar una entidad
-                /*var cat = ctx.Categorias.First(c => c.Id == 1);
-                cat.MultaDia = 3000;
-                ctx.SaveChanges();*/
-
-                //Agrega una reserva a un usuario y un documento
-                /*var res = new Reserva();
-                res.Fecha = "Sabado 3 de Marzo";
-                res.Posicion = "Activa";
-                res.UsuarioId = 12203001;
-                res.DocumentoIndex = 1;
-                ctx.Reservas.Add(res);
-                ctx.SaveChanges();*/
-            
-        
     }
 }
