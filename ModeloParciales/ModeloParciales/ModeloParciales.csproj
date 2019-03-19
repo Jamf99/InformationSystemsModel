@@ -33,7 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -45,10 +52,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Curso.cs">
+      <DependentUpon>ModeloParcial.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Estudiante.cs">
+      <DependentUpon>ModeloParcial.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Materia.cs">
+      <DependentUpon>ModeloParcial.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloParcial.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloParcial.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloParcial.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloParcial.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModeloParcial.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloParcial.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Parcial.cs">
+      <DependentUpon>ModeloParcial.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +91,23 @@
     <None Include="ModeloParcial.edmx.diagram">
       <DependentUpon>ModeloParcial.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModeloParcial.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModeloParcial.Context.cs</LastGenOutput>
+      <DependentUpon>ModeloParcial.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModeloParcial.edmx.sql" />
+    <Content Include="ModeloParcial.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModeloParcial.cs</LastGenOutput>
+      <DependentUpon>ModeloParcial.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
