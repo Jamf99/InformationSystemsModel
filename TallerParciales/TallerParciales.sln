@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TallerParciales", "TallerParciales\TallerParciales.csproj", "{829254F4-02C8-4F22-BA16-8131F0B72745}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibreriaParciales", "LibreriaParciales\LibreriaParciales.csproj", "{10ED30B4-D402-40CF-8E05-365241F6B962}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{829254F4-02C8-4F22-BA16-8131F0B72745}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{829254F4-02C8-4F22-BA16-8131F0B72745}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{829254F4-02C8-4F22-BA16-8131F0B72745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10ED30B4-D402-40CF-8E05-365241F6B962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10ED30B4-D402-40CF-8E05-365241F6B962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10ED30B4-D402-40CF-8E05-365241F6B962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10ED30B4-D402-40CF-8E05-365241F6B962}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

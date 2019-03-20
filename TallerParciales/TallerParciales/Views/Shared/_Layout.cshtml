@@ -30,9 +30,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Estudiantes" asp-action="Index">Estudiantes</a></li>
+                    <li><a asp-area="" asp-controller="Materias" asp-action="Index">Materias</a></li>
+                    <li><a asp-area="" asp-controller="Cursos" asp-action="Index">Cursos</a></li>
+                    <li><a asp-area="" asp-controller="Parciales" asp-action="Index">Parciales</a></li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown">Consultas<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="Consultas" asp-action="PromAcumulado">Promedio Acumulado Estudiantes</a></li>
+                            <li><a asp-controller="Consultas" asp-action="ListasClase">Listas de Clase</a></li>
+                        </ul>
+
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
