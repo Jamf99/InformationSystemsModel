@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{25C93289-2985-4C09-9156-5262BE78B7CA}</ProjectGuid>
+    <ProjectGuid>{C21EAEF0-6B33-4E4C-9469-14CEB84328F3}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>ModeloParciales</RootNamespace>
     <AssemblyName>ModeloParciales</AssemblyName>
@@ -35,8 +35,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,23 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parciales.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Parciales.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Parciales.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Parciales.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Parciales.edmx.diagram">
-      <DependentUpon>Parciales.edmx</DependentUpon>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
